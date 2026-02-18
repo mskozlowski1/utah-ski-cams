@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utah Ski Resort Webcams</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #0b0f17;
+      color: #e6edf3;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(160deg, #0d1b2a 0%, #112236 60%, #0d1b2a 100%);
+      border-bottom: 1px solid #1e3a5f;
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: clamp(1.4rem, 4vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      color: #6a9bbf;
+      font-size: 0.875rem;
+      letter-spacing: 0.04em;
+    }
+
+    .refresh-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 0.9rem;
+      font-size: 0.78rem;
+      color: #4a7a9b;
+    }
+
+    .refresh-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2e6da4;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 540px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #131a24;
+      border: 1px solid #1e2d3d;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #2e6da4;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-title {
+      padding: 0.65rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #aec6dc;
+      background: #0f1720;
+      border-bottom: 1px solid #1e2d3d;
+    }
+
+    .img-wrap {
+      display: block;
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      background: #0a1018;
+      overflow: hidden;
+    }
+
+    .img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .img-wrap img.loading {
+      opacity: 0.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.25rem;
+      color: #364a5e;
+      font-size: 0.78rem;
+      border-top: 1px solid #141e29;
+    }
+
+    footer a {
+      color: #2e6da4;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Utah Ski Resort Webcams</h1>
+    <p>Live conditions from across the Wasatch and beyond</p>
+    <div class="refresh-bar">
+      <span class="refresh-dot"></span>
+      <span id="refresh-status">Images refresh every 30 seconds</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-title">Alta</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/alta/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/HGGKfCsATYTvLiCZi9X3K3" alt="Alta webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Beaver Mountain</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/beaver-mountain/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/1758577868" alt="Beaver Mountain webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Brian Head</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/brian-head/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/nDJNy9Gr6s2NvdsRAjWnW3" alt="Brian Head webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Brighton</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/brighton/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/LBSKmCQHw9GVGF5AcHnE2o" alt="Brighton webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Cherry Peak</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/cherry-peak/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/2090891117" alt="Cherry Peak webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Deer Valley</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/deer-valley/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/ZFfEsBSprV7GfFinXUifK3" alt="Deer Valley webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Eagle Point</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/eagle-point/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/455629953" alt="Eagle Point webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Park City Mountain</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/park-city-mountain/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/2101381068" alt="Park City Mountain webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Powder Mountain</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/powder-mountain/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/X6egtUWNRiMsifcdUufns8" alt="Powder Mountain webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Snowbasin</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/snowbasin/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/548931577" alt="Snowbasin webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Snowbird</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/snowbird/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/bTLZYuVtvhk7XA5UTRBZhj" alt="Snowbird webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Solitude</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/solitude/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/525820161" alt="Solitude webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Sundance</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/sundance/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/1175860327" alt="Sundance webcam">
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Woodward Park City</div>
+        <a class="img-wrap" href="https://www.skiutah.com/members/woodward-park-city/" target="_blank" rel="noopener">
+          <img src="https://www.skiutah.com/files/blob/webcam/2094578317" alt="Woodward Park City webcam">
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>Webcam images sourced from <a href="https://www.skiutah.com/resorts/webcams" target="_blank" rel="noopener">Ski Utah</a>.</p>
+  </footer>
+
+  <script>
+    const INTERVAL_MS = 30000;
+
+    function refreshImages() {
+      const ts = Date.now();
+      document.querySelectorAll('.img-wrap img').forEach(img => {
+        const base = img.src.split('?')[0];
+        img.classList.add('loading');
+        const fresh = new Image();
+        fresh.onload = () => {
+          img.src = fresh.src;
+          img.classList.remove('loading');
+        };
+        fresh.onerror = () => img.classList.remove('loading');
+        fresh.src = base + '?t=' + ts;
+      });
+
+      const now = new Date();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('refresh-status').textContent = 'Last refreshed at ' + time + ' — updates every 30s';
+    }
+
+    setInterval(refreshImages, INTERVAL_MS);
+  </script>
+
+</body>
+</html>
